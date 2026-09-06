@@ -1,0 +1,227 @@
+/* src/index.css */
+@import "tailwindcss";
+
+@theme {
+  --color-volt-bg: #090e1a;
+  --color-volt-card: #111827;
+  --color-volt-border: #1f2937;
+  --color-volt-cyan: #06b6d4;
+  --color-volt-pink: #ec4899;
+  --color-volt-green: #10b981;
+  --color-volt-amber: #f59e0b;
+  --color-volt-red: #ef4444;
+  --color-volt-purple: #8b5cf6;
+  --color-volt-textPri: #f9fafb;
+  --color-volt-textSec: #9ca3af;
+  --color-volt-textMute: #6b7280;
+
+  /* Material 3 theme palette */
+  --color-tertiary-container: #10b981;
+  --color-surface-bright: #1f2937;
+  --color-secondary-fixed-dim: #c084fc;
+  --color-tertiary-fixed: #10b981;
+  --color-surface: #090e1a;
+  --color-surface-container-high: #1f2937;
+  --color-on-tertiary: #047857;
+  --color-on-surface: #f3f4f6;
+  --color-outline-variant: #1f2937;
+  --color-surface-container-lowest: #050810;
+  --color-on-background: #f3f4f6;
+  --color-primary-fixed: #a5f3fc;
+  --color-on-surface-variant: #9ca3af;
+  --color-on-primary-fixed: #083344;
+  --color-on-primary-fixed-variant: #155e75;
+  --color-primary: #06b6d4;
+  --color-inverse-primary: #0891b2;
+  --color-primary-fixed-dim: #67e8f9;
+  --color-on-error: #7f1d1d;
+  --color-surface-container-low: #0b0f19;
+  --color-on-tertiary-fixed-variant: #047857;
+  --color-inverse-surface: #f3f4f6;
+  --color-tertiary: #10b981;
+  --color-on-secondary-container: #e9d5ff;
+  --color-surface-container-highest: #374151;
+  --color-secondary-fixed: #f3e8ff;
+  --color-on-secondary: #581c87;
+  --color-on-tertiary-fixed: #047857;
+  --color-surface-tint: #06b6d4;
+  --color-tertiary-fixed-dim: #10b981;
+  --color-primary-container: #0891b2;
+  --color-outline: #374151;
+  --color-on-secondary-fixed-variant: #6b21a8;
+  --color-on-error-container: #fee2e2;
+  --color-inverse-on-surface: #111827;
+  --color-secondary-container: #7e22ce;
+  --color-error-container: #991b1b;
+  --color-surface-dim: #090e1a;
+  --color-on-primary-container: #cffafe;
+  --color-on-tertiary-container: #d1fae5;
+  --color-on-secondary-fixed: #3b0764;
+  --color-surface-variant: #1f2937;
+  --color-secondary: #c084fc;
+  --color-on-primary: #083344;
+  --color-surface-container: #111827;
+  --color-error: #f87171;
+  --color-background: #090e1a;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-headline: "Inter", sans-serif;
+
+  --shadow-cyan: 0 4px 20px rgba(6, 182, 212, 0.04);
+  --shadow-pink: 0 4px 20px rgba(236, 72, 153, 0.04);
+  --shadow-green: 0 4px 20px rgba(16, 185, 129, 0.04);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  --animate-pulse-cyan: pulse-cyan 2s cubic-bezier(0.4,0,0.6,1) infinite;
+  --animate-pulse-glow: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-coin-burst: coin-burst 0.6s ease-out forwards;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.92; transform: scale(1.005); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes coin-burst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.5) rotate(360deg); opacity: 0; }
+}
+
+/* Custom Base Layer styling */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #090e1a;
+  color: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Glass card effect styling */
+.glass {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-hover:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(17, 24, 39, 0.7);
+}
+
+.glass-card {
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing text colors (simplified to clean colors) */
+.text-neon-cyan {
+  color: #06b6d4;
+}
+.text-neon-pink {
+  color: #ec4899;
+}
+.text-neon-green {
+  color: #10b981;
+}
+
+/* Premium gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tech grid graphic layout overlay - cleaned */
+.grid-bg {
+  background: transparent;
+}
+
+.estimated-label {
+  font-size: 0.65rem;
+  color: #f59e0b;
+  letter-spacing: 0.08em;
+}
+
+/* Recharts custom styling overlays */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.03) !important;
+}
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Custom float animations */
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 5s ease-in-out 2.5s infinite;
+}
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
