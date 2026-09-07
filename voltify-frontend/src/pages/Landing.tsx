@@ -58,7 +58,7 @@ export default function Landing() {
           <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             {/* Left Content Column */}
             <div className="lg:col-span-7 flex flex-col gap-8">
-              <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/10">
+              <div className="inline-flex w-fit items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/10">
                 <span className="size-2 rounded-full bg-emerald-500" />
                 <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest font-mono">Hardware-Free Analytics</span>
               </div>
