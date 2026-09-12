@@ -6,6 +6,8 @@ import { z } from 'zod';
 import { toast } from 'react-toastify';
 import { Zap, Eye, EyeOff } from 'lucide-react';
 import { apiService } from '../../lib/api';
+import { useAuthStore } from '../../store/authStore';
+import { useDashboardStore } from '../../store/dashboardStore';
 
 const signupSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -16,6 +18,9 @@ type SignupForm = z.infer<typeof signupSchema>;
 
 export default function Signup() {
   const navigate = useNavigate();
+  const { setAuth } = useAuthStore();
+  const { isOnboarded } = useDashboardStore();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -26,24 +31,20 @@ export default function Signup() {
   const onSubmit = async (data: SignupForm) => {
     setLoading(true);
     try {
-      await apiService.signup(data);
+      const response = await apiService.signup(data);
       toast.success('Account created! Please verify your email.');
-      // Pass the email in state so OTP page can use it
-      navigate('/verify-otp', { state: { email: data.email } });
-    } catch {
-      toast.error('Failed to create account. Email may be taken.');
+      // Pass email, token, and user so the OTP page can log them in directly
+      navigate('/verify-otp', { state: { email: data.email, token: response.token, user: response.user } });
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to create account. Email may be taken.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleOAuth = async (provider: string) => {
-    try {
-      await apiService.oauthLogin(provider);
-      toast.success('Account created via OAuth!');
-      navigate('/dashboard'); // OAuth usually bypasses OTP
-    } catch {
-      toast.error(`Failed to sign up with ${provider}`);
+  const handleOAuth = (provider: string) => {
+    if (provider === 'google') {
+      window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/google`;
     }
   };
 
@@ -53,9 +54,7 @@ export default function Signup() {
         {/* Logo */}
         <div className="text-center mb-10">
           <Link to="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="size-10 rounded-xl bg-surface border border-outline flex items-center justify-center">
-              <Zap className="size-5 text-primary" />
-            </div>
+            <img src="/logo.gif" alt="Voltify Logo" className="size-16 object-contain" />
           </Link>
           <h1 className="font-display text-2xl font-semibold text-on-surface tracking-tight">Create an account</h1>
           <p className="text-on-surface-variant mt-1.5 text-sm">Start your energy saving journey today.</p>
@@ -158,6 +157,7 @@ export default function Signup() {
           </p>
         </div>
       </div>
+
     </div>
   );
 }

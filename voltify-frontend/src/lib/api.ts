@@ -88,20 +88,24 @@ export const apiService = {
     return fetchApi('/auth/login', { method: 'POST', body: JSON.stringify(data) }, fallback);
   },
 
-  async oauthLogin(provider: string) {
+  async oauthLogin(provider: string, payload?: { name: string; email: string }) {
     const fallback = {
       token: 'mock-jwt-token-oauth',
       user: {
         id: `oauth-user-${Date.now()}`,
-        name: 'Oauth User',
-        email: 'oauth@example.com',
+        name: payload?.name || 'Oauth User',
+        email: payload?.email || 'oauth@example.com',
         tier: 1,
         coins: 0,
         streak_days: 0,
         onboarding_complete: false,
       }
     };
-    return fetchApi(`/auth/oauth/${provider}`, { method: 'POST' }, fallback);
+    const options: RequestInit = { method: 'POST' };
+    if (payload) {
+      options.body = JSON.stringify(payload);
+    }
+    return fetchApi(`/auth/oauth/${provider}`, options, fallback);
   },
 
   async verifyOTP(data: { email: string; otp: string }) {
@@ -117,6 +121,11 @@ export const apiService = {
   async forgotPassword(data: { email: string }) {
     const fallback = { success: true, message: 'Password reset link sent to email' };
     return fetchApi('/auth/forgot-password', { method: 'POST', body: JSON.stringify(data) }, fallback);
+  },
+
+  async resetPassword(data: { email: string; password: string }) {
+    const fallback = { success: true, message: 'Password reset successfully' };
+    return fetchApi('/auth/reset-password', { method: 'POST', body: JSON.stringify(data) }, fallback);
   },
 
   async getMe() {
@@ -179,9 +188,14 @@ export const apiService = {
 
   async getDashboardUsage(period: 'daily' | 'weekly' | 'monthly' = 'daily') {
     const appliances = Object.keys(DEFAULT_APPLIANCES).map(k => ({ ...DEFAULT_APPLIANCES[k], id: k } as Appliance));
+    const rawFallback = generateDailyUsage(appliances, period === 'daily' ? 30 : 30, 'Chennai');
+    // Ensure dates are always YYYY-MM-DD (not ISO timestamps)
     const fallback = {
       period,
-      data: generateDailyUsage(appliances, period === 'daily' ? 7 : 30, 'Chennai')
+      data: rawFallback.map(d => ({
+        ...d,
+        date: d.date.split('T')[0], // strip time if present
+      }))
     };
     return fetchApi(`/dashboard/usage?period=${period}`, {}, fallback);
   },
@@ -192,7 +206,23 @@ export const apiService = {
     const fallback = {
       data: estimateApplianceBreakdown(appliances, estUnits * 8.0, estUnits, 8.0)
     };
-    return fetchApi('/dashboard/appliance-breakdown', {}, fallback);
+    const res = await fetchApi('/dashboard/appliance-breakdown', {}, fallback);
+    if (res && Array.isArray(res.data)) {
+      const NEON_COLORS = ['#22d3ee', '#ec4899', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#a78bfa'];
+      res.data = res.data.map((item: any, idx: number) => {
+        const defaultApp = appliances.find(a => a.name.toLowerCase() === item.name.toLowerCase())
+                         || appliances.find(a => item.name.toLowerCase().includes(a.name.toLowerCase()));
+        return {
+          name: item.name,
+          units: item.units !== undefined ? item.units : (item.estimated_units !== undefined ? item.estimated_units : 0),
+          percentage: item.percentage !== undefined ? item.percentage : 0,
+          cost: item.cost !== undefined ? item.cost : (item.estimated_cost !== undefined ? item.estimated_cost : 0),
+          icon: item.icon || defaultApp?.icon || '🔌',
+          color: item.color || NEON_COLORS[idx % NEON_COLORS.length]
+        };
+      });
+    }
+    return res;
   },
 
   async getInsights() {

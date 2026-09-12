@@ -3,8 +3,10 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Zap, ArrowLeft } from 'lucide-react';
 import { apiService } from '../../lib/api';
+import { useAuthStore } from '../../store/authStore';
 
 export default function VerifyOTP() {
+  const { setAuth } = useAuthStore();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [loading, setLoading] = useState(false);
   const [resendTimer, setResendTimer] = useState(30);
@@ -64,7 +66,16 @@ export default function VerifyOTP() {
     try {
       await apiService.verifyOTP({ email, otp: code });
       toast.success('Email verified successfully!');
-      navigate('/login');
+      
+      const token = location.state?.token;
+      const user = location.state?.user;
+
+      if (token && user) {
+        setAuth(user, token);
+        navigate('/onboarding');
+      } else {
+        navigate('/login');
+      }
     } catch {
       toast.error('Invalid OTP. Please try again.');
     } finally {
@@ -91,9 +102,7 @@ export default function VerifyOTP() {
             <ArrowLeft className="size-4" /> Back
           </Link>
           <div className="flex justify-center mb-4 mt-2">
-            <div className="size-12 rounded-xl bg-surface border border-outline flex items-center justify-center shadow-sm">
-              <Zap className="size-6 text-primary" />
-            </div>
+            <img src="/logo.gif" alt="Voltify Logo" className="size-14 object-contain" />
           </div>
           <h1 className="font-display text-2xl font-semibold text-on-surface tracking-tight">Check your email</h1>
           <p className="text-on-surface-variant mt-2 text-sm px-4">
