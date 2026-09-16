@@ -12,13 +12,10 @@
 ## 👥 Team Details
 
 - **Team Name:** CODE HUNTRIX
-- **Hackathon:** RUSHHOUR
 - **Institution:** Saveetha Engineering College, Chennai
 - **Team Members:**
-  - **Ramitha:** Backend & System Design
+  - **Ramitha:** Research & Product Strategy
   - **Riyaz:** Frontend & UX Design
-  - **Nabithra:** Research & Product Strategy
-  - **Deepshika:** AI & ML Engineer
 
 ---
 
@@ -54,11 +51,11 @@ The **Tier 1 prototype** delivers immediate value to the largest segment with ze
 
 - **Appliance Disaggregation:** Breaks down total monthly bill into per-appliance usage and cost — no smart meter needed. Calibrated to match the user's actual electricity bill.
 - **Comfort-Safe Savings (CSS):** Shows the exact tradeoff between comfort (AC at 18°C vs 24°C) and monthly ₹ savings. Every recommendation is bounded by **BEE and WHO guidelines**.
-- **VoltBuddy AI Assistant:** Conversational energy coach powered by **Groq (Llama 3.3 70B)** that answers bill questions and gives personalised appliance tips. Falls back to a smart rule-based engine if unavailable.
 - **What-If Simulator:** Simulate reducing AC hours, shifting geyser usage, or changing fridge temperature — and instantly see projected monthly ₹ savings before committing.
 - **Predictive Alerts:** 7-day and 30-day forecasts. Bill shock alert when you're on track to exceed last month's bill.
+- **Daily / Weekly / Monthly Insights:** 30-day trend charts, appliance-wise cost breakdown.
+- **VoltBuddy AI Assistant:** Conversational energy coach powered by **Groq (Llama 3.3 70B)** that answers bill questions and gives personalised appliance tips. Falls back to a smart rule-based engine if unavailable.
 - **Behavioural Gamification:** Daily check-ins (coins), weekly challenges, streak multipliers (up to 1.6×), community leaderboard, and a coin redemption shop — making conservation a habit, not a chore.
-- **Daily / Weekly / Monthly Insights:** 30-day trend charts, appliance-wise cost breakdown, carbon footprint (kg CO₂/month), and a single **Energy Score (0–100)**.
 
 ---
 
@@ -335,13 +332,6 @@ node test_pooler.js         # Supabase connection pooler validation
 - **Multilingual Support:** Tamil, Hindi, Telugu, and Kannada for Tier 2/3 city accessibility
 - **Carbon Credit Marketplace:** Allow households to trade verified CO₂ savings with ESG-focused corporates
 - **B2B Dashboards:** Energy management portals for housing societies, campuses, and small businesses
-
----
-
-## 🎬 Demo
-<img width="662" height="1600" alt="image" src="https://github.com/user-attachments/assets/576f5aeb-b9e3-4d5f-96c8-f1f689b5ed36" />
-<img width="1236" height="1600" alt="image" src="https://github.com/user-attachments/assets/1481d649-4b7a-4263-a841-44f5961fe8d6" />
-
 
 ---
 
