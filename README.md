@@ -14,8 +14,7 @@
 - **Team Name:** CODE HUNTRIX
 - **Institution:** Saveetha Engineering College, Chennai
 - **Team Members:**
-  - **Ramitha:** Research & Product Strategy
-  - **Riyaz:** Frontend & UX Design
+  - **Ramitha:** Research & Product Strategy & Frontend & UX Design
 
 ---
 
