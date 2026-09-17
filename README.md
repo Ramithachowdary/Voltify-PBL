@@ -13,9 +13,6 @@
 
 - **Team Name:** CODE HUNTRIX
 - **Institution:** Saveetha Engineering College, Chennai
-- **Team Members:**
-  - **Ramitha:** Research & Product Strategy & Frontend & UX Design
-
 ---
 
 ## ❗ Problem Statement
@@ -348,9 +345,3 @@ node test_pooler.js         # Supabase connection pooler validation
 10. Open-Meteo (free weather API) — [open-meteo.com](https://open-meteo.com)
 
 ---
-
-<div align="center">
-
-Built by **Team CODE HUNTRIX** · Saveetha Engineering College, Chennai  
-
-</div>
