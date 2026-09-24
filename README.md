@@ -345,3 +345,28 @@ node test_pooler.js         # Supabase connection pooler validation
 10. Open-Meteo (free weather API) — [open-meteo.com](https://open-meteo.com)
 
 ---
+
+## Software Testing:
+
+#### Landing:
+<img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/1dc78c01-a83c-423f-8e58-eb9cb5d8715c" />
+<img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/7a7d4ff2-c7f8-4aec-a06c-06c37b004089" />
+<img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/49a4a3ea-4d19-4050-a80b-97df45435ec0" />
+<img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/9fd56ed7-cb89-4c25-924c-0e1b20fe4ba6" />
+
+
+#### Onboarding - Step 1:
+<img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/0c1afc76-3456-4b23-9768-022cb46004fa" />
+
+#### Onboarding - Step 2:
+<img width="1707" height="772" alt="image" src="https://github.com/user-attachments/assets/2d244e16-6075-43a2-a6bd-1bf064e42754" />
+
+#### Onboarding - Step 3:
+<img width="1707" height="772" alt="image" src="https://github.com/user-attachments/assets/f961c95d-96dc-410b-8627-343c62cc433e" />
+
+#### Onboarding - Step 4:
+<img width="1707" height="772" alt="image" src="https://github.com/user-attachments/assets/c4c80c7d-c026-4bee-a43c-3e7e926aa71f" />
+
+#### Dashboard:
+<img width="1701" height="1443" alt="image" src="https://github.com/user-attachments/assets/5586491e-8def-48e3-b375-9dcff93087a4" />
+
